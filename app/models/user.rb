@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :sign_up_code,
             on: :create,
             presence: true,
-            inclusion: { in: ['GOSSIP_2017'] }
+            inclusion: { in: ['GossipTeam2018'] }
 
   def self.from_facebook(auth)
     user = where(email: auth.info.email).first
@@ -27,11 +27,11 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.username = auth.info.name
       user.password = Devise.friendly_token[0, 20]
-      user.sign_up_code = 'GOSSIP_2017'
+      user.sign_up_code = 'GossipTeam2018'
       user.save
     elsif user.facebook_id == ''
       user.facebook_id = auth.uid
-      user.sign_up_code = 'GOSSIP_2017'
+      user.sign_up_code = 'GossipTeam2018'
       user.save
     end
     user
